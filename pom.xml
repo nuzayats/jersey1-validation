@@ -21,7 +21,6 @@
         <tomcat.version>7.0.41</tomcat.version>
         <arquillian.version>1.1.11.Final</arquillian.version>
         <arquillian.tomcat.container.version>1.0.0.CR5</arquillian.tomcat.container.version>
-        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencyManagement>
