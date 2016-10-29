@@ -1,5 +1,8 @@
 package app;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,6 +16,8 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 @Path("myresource")
 public class MyResource {
 
+    private static final Logger log = LoggerFactory.getLogger(MyResource.class);
+
     // According to http://maxenglander.com/2013/01/11/validating-jersey-request.html ...
     //
     // Jersey 1.x does not provide validation of request parameters -
@@ -23,11 +28,14 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String emp(@QueryParam("id") final EmployeeId id) {
         if (id == null) {
+            log.trace("id is null");
             throw new WebApplicationException(
                     Response.status(BAD_REQUEST)
                             .entity("id is required")
                             .build());
         }
+
+        log.trace("request succeeded");
 
         return "Hello, " + id;
     }

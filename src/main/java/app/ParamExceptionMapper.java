@@ -1,21 +1,21 @@
 package app;
 
 import com.sun.jersey.api.ParamException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Provider
 public class ParamExceptionMapper implements ExceptionMapper<ParamException> {
 
-    private static final Logger LOGGER = Logger.getLogger(ParamExceptionMapper.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(ParamExceptionMapper.class);
 
     @Override
     public Response toResponse(final ParamException e) {
-        LOGGER.log(Level.FINE, "ParamException occurred", e);
+        log.debug("ParamException occurred", e);
 
         final StringBuilder sb = new StringBuilder("Your parameter '" + e.getParameterName() + "' is invalid");
 
