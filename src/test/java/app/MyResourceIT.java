@@ -85,7 +85,7 @@ public class MyResourceIT {
 
         final String content = getContent(response);
         assertThat(response.getStatusLine().getStatusCode(), is(400));
-        assertThat(content, is("Your parameter 'id' is invalid"));
+        assertThat(content, startsWith("Your parameter 'id' is invalid"));
     }
 
     @Test

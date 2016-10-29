@@ -25,7 +25,7 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String emp(@QueryParam("id") final EmployeeId id) {
         if (id == null) {
-            throw new ParamException.QueryParamException(null, "id", null);
+            throw new QueryParamNotFoundException("id");
         }
 
         log.trace("request succeeded");
@@ -38,5 +38,12 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String npe() {
         throw new NullPointerException("This will be processed by RuntimeExceptionMapper");
+    }
+
+    private static class QueryParamNotFoundException extends ParamException.QueryParamException {
+
+        private QueryParamNotFoundException(final String name) {
+            super(new IllegalArgumentException("couldn't find the parameter"), name, null);
+        }
     }
 }
