@@ -1,5 +1,6 @@
 package app;
 
+import com.sun.jersey.api.ParamException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,11 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 @Path("myresource")
 public class MyResource {
@@ -28,11 +25,7 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String emp(@QueryParam("id") final EmployeeId id) {
         if (id == null) {
-            log.trace("id is null");
-            throw new WebApplicationException(
-                    Response.status(BAD_REQUEST)
-                            .entity("id is required")
-                            .build());
+            throw new ParamException.QueryParamException(null, "id", null);
         }
 
         log.trace("request succeeded");
