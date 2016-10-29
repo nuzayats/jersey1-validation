@@ -5,7 +5,7 @@ public class EmployeeId {
     private final long value;
 
     public EmployeeId(final long value) {
-        if (value < 1) {
+        if (value < 0) {
             throw new IllegalArgumentException("EmployeeId must be larger than zero");
         }
 
