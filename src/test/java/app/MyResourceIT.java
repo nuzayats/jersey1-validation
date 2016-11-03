@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,6 +32,8 @@ import static org.hamcrest.core.StringStartsWith.startsWith;
 
 @RunWith(Arquillian.class)
 public class MyResourceIT {
+    private static final Logger log = LoggerFactory.getLogger(MyResourceIT.class);
+
     private static CloseableHttpClient client;
     private CloseableHttpResponse response;
 
@@ -167,8 +171,8 @@ public class MyResourceIT {
         try (final InputStream is = response.getEntity().getContent()) {
             content = read(is);
         }
-        System.out.println(response.getStatusLine());
-        System.out.println(content);
+        log.info("{}", response.getStatusLine());
+        log.info(content);
         return content;
     }
 
