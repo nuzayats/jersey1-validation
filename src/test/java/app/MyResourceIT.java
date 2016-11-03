@@ -45,6 +45,7 @@ public class MyResourceIT {
     public static WebArchive createTestArchive() {
         final WebArchive webArchive = ShrinkWrap
                 .create(WebArchive.class, "ROOT.war")
+                .addClass(RequestURIFilter.class)
 //                .addPackage(MyResource.class.getPackage())
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"))
 //                .addAsLibraries(

@@ -27,6 +27,9 @@ public class ParamExceptionMapper implements ExceptionMapper<ParamException> {
             }
         }
 
+        final String path = RequestURIFilter.getRequestURI();
+        log.info("Use this variable to change the response according to request path: {}", path);
+
         return Response.status(Response.Status.BAD_REQUEST)
                 .entity(sb.toString())
                 .build();
