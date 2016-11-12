@@ -5,7 +5,7 @@ import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
-import org.apache.bval.guice.ValidationModule;
+import ru.vyarus.guice.validator.ValidationModule;
 
 import java.util.HashMap;
 import java.util.Map;
