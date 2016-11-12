@@ -20,10 +20,7 @@ public class MyResource {
     @Inject
     MyService myService;
 
-    // According to http://maxenglander.com/2013/01/11/validating-jersey-request.html ...
-    //
-    // Jersey 1.x does not provide validation of request parameters -
-    // it leaves that up to you. Jersey 2.x does provide validation of request parameters.
+    // Use @Validate and @NotNull for null checking
 
     @GET
     @Path("emp")
