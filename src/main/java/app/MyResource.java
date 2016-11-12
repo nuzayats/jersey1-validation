@@ -1,10 +1,12 @@
 package app;
 
 import com.sun.jersey.api.ParamException;
+import org.apache.bval.guice.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -27,7 +29,8 @@ public class MyResource {
     @GET
     @Path("emp")
     @Produces(MediaType.TEXT_PLAIN)
-    public String emp(@QueryParam("id") final EmployeeId id) {
+    @Validate
+    public String emp(@NotNull @QueryParam("id") final EmployeeId id) {
         if (id == null) {
             throw new QueryParamNotFoundException("id");
         }

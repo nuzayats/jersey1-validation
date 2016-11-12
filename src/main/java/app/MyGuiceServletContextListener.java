@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
+import org.apache.bval.guice.ValidationModule;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +23,8 @@ public class MyGuiceServletContextListener extends GuiceServletContextListener {
                 params.put("com.sun.jersey.spi.container.ContainerRequestFilters", MDCFilter.class.getName());
 
                 serve("/app/*").with(GuiceContainer.class, params);
+
+                install(new ValidationModule());
             }
         });
     }
