@@ -4,6 +4,7 @@ import com.sun.jersey.api.ParamException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,6 +15,9 @@ import javax.ws.rs.core.MediaType;
 public class MyResource {
 
     private static final Logger log = LoggerFactory.getLogger(MyResource.class);
+
+    @Inject
+    MyService myService;
 
     // According to http://maxenglander.com/2013/01/11/validating-jersey-request.html ...
     //
@@ -30,7 +34,7 @@ public class MyResource {
 
         log.trace("request succeeded");
 
-        return "Hello, " + id;
+        return myService.hello(id);
     }
 
     @GET
