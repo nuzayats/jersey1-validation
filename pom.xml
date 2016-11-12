@@ -17,7 +17,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <jersey.version>1.16</jersey.version>
-        <guice.version>4.1.0</guice.version>
+        <guice.version>3.0</guice.version>
 
         <tomcat.version>7.0.41</tomcat.version>
         <arquillian.version>1.1.11.Final</arquillian.version>
@@ -86,6 +86,21 @@
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
             <version>${guice.version}</version>
+        </dependency>
+
+
+        <!--
+        This prevents following error with Guice 3.0. with Guice 4.1.0, this is unnecessary.
+
+        com.google.inject.internal.util.$ComputationException: java.lang.NoClassDefFoundError: com/google/common/collect/Lists
+            at com.google.inject.internal.util.$MapMaker$StrategyImpl.compute(MapMaker.java:553)
+            ...
+            -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>15.0</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
