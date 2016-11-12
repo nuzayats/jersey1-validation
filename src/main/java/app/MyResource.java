@@ -1,6 +1,5 @@
 package app;
 
-import com.sun.jersey.api.ParamException;
 import org.apache.bval.guice.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +30,6 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Validate
     public String emp(@NotNull @QueryParam("id") final EmployeeId id) {
-        if (id == null) {
-            throw new QueryParamNotFoundException("id");
-        }
-
         log.trace("request succeeded");
 
         return myService.hello(id);
@@ -45,12 +40,5 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String npe() {
         throw new NullPointerException("This will be processed by RuntimeExceptionMapper");
-    }
-
-    private static class QueryParamNotFoundException extends ParamException.QueryParamException {
-
-        private QueryParamNotFoundException(final String name) {
-            super(new IllegalArgumentException("couldn't find the parameter"), name, null);
-        }
     }
 }
